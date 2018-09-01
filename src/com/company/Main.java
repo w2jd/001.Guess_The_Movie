@@ -9,11 +9,14 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        _001_Guess_The_Movie_Title Exercise001 = new _001_Guess_The_Movie_Title();
-        Exercise001.main();
+        /*_001_Guess_The_Movie_Title Exercise001 = new _001_Guess_The_Movie_Title();
+        Exercise001.main();*/
 
         /*_002_BankManager Exercise002 = new _002_BankManager();
         Exercise002.main();*/
+
+        _003_Arrays_and_Collections Exercise003 = new _003_Arrays_and_Collections();
+        Exercise003.main();
     }
 
 }
