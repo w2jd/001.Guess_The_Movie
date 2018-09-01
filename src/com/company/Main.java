@@ -15,8 +15,11 @@ public class Main {
         /*_002_BankManager Exercise002 = new _002_BankManager();
         Exercise002.main();*/
 
-        _003_Arrays_and_Collections Exercise003 = new _003_Arrays_and_Collections();
-        Exercise003.main();
+        /*_003_Arrays_and_Collections Exercise003 = new _003_Arrays_and_Collections();
+        Exercise003.main();*/
+
+        _004_Space_Challenge Exercise004 = new _004_Space_Challenge();
+        Exercise004.main();
     }
 
 }
