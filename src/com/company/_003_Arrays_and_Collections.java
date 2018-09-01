@@ -42,6 +42,7 @@ class StudyArrayList {
             System.out.print(item + "\t");
         }
 
+        System.out.print("\n\t82's index : " + scores.indexOf(82));
     }
 
     private void add() {
@@ -50,6 +51,8 @@ class StudyArrayList {
         scores.add(89);
         scores.add(97);
         scores.add(92);
+        scores.add(88);
+        scores.add(82);
     }
 }
 
@@ -94,7 +97,7 @@ class StudyStack {
 // Queue : First in First Out
 // Deque : First in First Out + add or remove elements from either end of a both(Front of End)
 class StudyQueue {
-    Queue ticketLine = new LinkedList();
+    Queue<String> ticketLine = new LinkedList();
 
     void play() {
         System.out.println("\n=== Queue");
