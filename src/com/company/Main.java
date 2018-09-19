@@ -18,11 +18,14 @@ public class Main {
         /*_003_Arrays_and_Collections Exercise003 = new _003_Arrays_and_Collections();
         Exercise003.main();*/
 
-        _004_Space_Challenge Exercise004 = new _004_Space_Challenge();
-        Exercise004.main();
+        /*_004_Space_Challenge Exercise004 = new _004_Space_Challenge();
+        Exercise004.main();*/
 
         /*_005_Move_Zero Exercise005 = new _005_Move_Zero();
         Exercise005.main();*/
+
+        _006_Call_Student Exercise006 = new _006_Call_Student();
+        Exercise006.main();
     }
 
 }
