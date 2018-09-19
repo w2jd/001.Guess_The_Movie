@@ -38,7 +38,7 @@ public class _006_Call_Student {
 class Input {
     private int numberOfHuman;
     private int countCall;
-    private char[] student;
+    private int[] student;
     private Scanner scan = new Scanner(System.in);
 
     Input() {
@@ -50,7 +50,7 @@ class Input {
         return numberOfHuman;
     }
 
-    char[] getStudent() {
+    int[] getStudent() {
         return student;
     }
 
@@ -61,8 +61,8 @@ class Input {
         numberOfHuman = Integer.parseInt(input[0]);
         countCall = Integer.parseInt(input[1]);
 
-        student = new char[numberOfHuman+1];
-        Arrays.fill(student, 'X');
+        student = new int[numberOfHuman+1];
+        Arrays.fill(student, 0);
     }
 
     // 호명 횟수만큼 inputCallData 실행
@@ -72,7 +72,7 @@ class Input {
         }
     }
 
-    // 호명된 번호에 'O' 표시
+    // 호명된 번호의 값을 1로 변경
     private void inputCallData() throws NumberFormatException {
 //        System.out.print("Call : ");
         String[] input = scan.nextLine().split(" 0")[0].split(" ");
@@ -80,11 +80,11 @@ class Input {
         int inputCnt = input.length;
         int inputToInt = 0;
 
-        // 호명된 number에는 'O' 표시
+        // 호명된 number의 값을 1로 변경
         for(int cnt=0; cnt < inputCnt; cnt++) {
             inputToInt = Integer.parseInt(input[cnt]);
             if(inputToInt > 0 && inputToInt <= numberOfHuman) {
-                student[inputToInt] = 'O';
+                student[inputToInt] = 1;
             }
         }
     }
@@ -94,18 +94,18 @@ class Input {
 class ProcessCheck {
     private int nonCallCnt = 0;
     private int numberOfHuman;
-    private char[] student;
+    private int[] student;
 
     // 호명이 안 된('X') 학생 수 count
-    void checkXO(int numberOfHuman, char[] student) {
+    void checkXO(int numberOfHuman, int[] student) {
         this.numberOfHuman = numberOfHuman;
         this.student = student.clone();
 
         for (int cnt = 1; cnt <= numberOfHuman; cnt++) {
-            if (student[cnt] == 'X') {
-                nonCallCnt++;
-            }
+            nonCallCnt += student[cnt];
         }
+
+        nonCallCnt = numberOfHuman - nonCallCnt;
 
         // Result
         System.out.println(nonCallCnt);
