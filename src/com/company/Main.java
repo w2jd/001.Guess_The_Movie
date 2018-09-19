@@ -24,8 +24,11 @@ public class Main {
         /*_005_Move_Zero Exercise005 = new _005_Move_Zero();
         Exercise005.main();*/
 
-        _006_Call_Student Exercise006 = new _006_Call_Student();
-        Exercise006.main();
+        /*_006_Call_Student Exercise006 = new _006_Call_Student();
+        Exercise006.main();*/
+
+        _007_Calculate_The_Rank Exercise007 = new _007_Calculate_The_Rank();
+        Exercise007.main();
     }
 
 }
