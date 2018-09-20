@@ -107,7 +107,7 @@ class InputProcess {
             if (input[cnt] == testCase[cnt]) {
                 user[userid][User007.numberOfAllCorrect] += 1;
             } else if (input[cnt] < testCase[cnt]) {
-                user[userid][User007.numberOfCorrect] = input[cnt];
+                user[userid][User007.numberOfCorrect] += input[cnt];
             }
         }
     }
@@ -153,6 +153,7 @@ class Process007 {
                 winner[User007.user_item2] = cnt;
             } else if(winner[User007.numberOfAllCorrect] == user[cnt][User007.numberOfAllCorrect]) {
                 // Condition 2 : testcase 맞춘 수가 많은 순
+                /////// This is Problem
                 if(winner[User007.numberOfCorrect] < user[cnt][User007.numberOfCorrect]) {
                     winner[User007.numberOfAllCorrect] = user[cnt][User007.numberOfAllCorrect];
                     winner[User007.numberOfCorrect] = user[cnt][User007.numberOfCorrect];
