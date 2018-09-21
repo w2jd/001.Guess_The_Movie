@@ -34,10 +34,11 @@ public class _008_Set_Seat {
 
 }
 
+// Process : Input by User
 class InputProcess008 {
     private int totalSeat, totalHuman, kingSeat;
     private int[] inputData;
-    Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
 
     public int[] getInputData() {
         return inputData;
@@ -56,20 +57,23 @@ class InputProcess008 {
     }
 }
 
+// Process : set seat, print seat table
 class Process008 {
     private int totalSeat, totalHuman, kingSeat;
-    private int human = 1;
-    private String[] seat;
+    private int human = 1;  // human number
+    private String[] seat;  // seat array
 
     void setSeat(int[] inputIntArray) {
         int seatNum;
         int nextCnt = 1;
         boolean plusMinus = false;
 
+        // 0: 좌석수, 1: 왕의좌석번호, 2: 인원수
         totalSeat = inputIntArray[0];
         kingSeat = inputIntArray[1];
         totalHuman = inputIntArray[2];
 
+        // if human can't seat then print -1 and erturn
         if (totalSeat <= totalHuman) {
             System.out.println("-1");
             return;
@@ -79,26 +83,27 @@ class Process008 {
         seat = new String[totalSeat + 1];
         seat[kingSeat] = "*";
 
+        // Set seat to human
         while (seat[1] == null || seat[totalSeat] == null) {
-            if (plusMinus == false) {
+            if (!plusMinus) {   // Left Seat
                 seatNum = kingSeat - nextCnt;
 
                 if (seatNum >= 1) {
                     if (human <= totalHuman) {
                         seat[seatNum] = String.valueOf(human);
-                    } else if (human > totalHuman) {
+                    } else {  // human > totalHuman
                         seat[seatNum] = String.valueOf(0);
                     }
                     human++;
                 }
                 plusMinus = true;
-            } else if (plusMinus == true) {
+            } else {    // Right Seat : plusMinus == true
                 seatNum = kingSeat + nextCnt;
 
                 if (seatNum <= totalSeat) {
                     if (human <= totalHuman) {
                         seat[seatNum] = String.valueOf(human);
-                    } else if (human > totalHuman) {
+                    } else {    // human > totalHuman
                         seat[seatNum] = String.valueOf(0);
                     }
                     human++;
@@ -110,10 +115,10 @@ class Process008 {
         printSeat();
     }
 
-    void printSeat() {
+    // print seat table
+    private void printSeat() {
         for (int cnt = 1; cnt <= totalSeat; cnt++) {
             System.out.print(seat[cnt] + " ");
         }
     }
-
 }
