@@ -27,8 +27,11 @@ public class Main {
         /*_006_Call_Student Exercise006 = new _006_Call_Student();
         Exercise006.main();*/
 
-        _007_Calculate_The_Rank Exercise007 = new _007_Calculate_The_Rank();
-        Exercise007.main();
+        /*_007_Calculate_The_Rank Exercise007 = new _007_Calculate_The_Rank();
+        Exercise007.main();*/
+
+        _008_Set_Seat Exercise008 = new _008_Set_Seat();
+        Exercise008.main();
     }
 
 }

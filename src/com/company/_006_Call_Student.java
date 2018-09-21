@@ -1,9 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
-
 /*
 - Question
         K 교수님은 랜덤하게 출석을 호명하신다. 특히 한 수업 시간에 여러 번 호명할 때도 있는데, 아무래도 어떤 사람은 여러 번 볼리고 어떤 사람은 아예 호명이 되지 않는 것 같다. 한렬이는 호명된 리스트에서 아예 출석이 한 번도 안 불려진 사람을 찾는 프로그램을 짜보려고 한다.
@@ -22,6 +18,10 @@ import java.util.Scanner;
         4 2 6 5 8 6 0
         1 2 9 3 8 4 5 0
 */
+
+
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class _006_Call_Student {
     public static void main() {

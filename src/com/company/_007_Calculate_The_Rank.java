@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.Scanner;
-
 /*
 - Question
     동주는 프로그래밍 콘테스트에 참가했다. 이 대회는 각 문제에 대해 모든 테스트 케이스를 맞추면 10점, 틀린 것이 있을 경우 맞춘 테스트케이스 수를 점수로 받게 된다. 참가지 수 N과 문제 수 K에 대해 참가자 별 맞힌 테스트케이스 개수가 주어졌을 때 일등인 사람의 번호를 출력한다.
@@ -30,6 +28,8 @@ import java.util.Scanner;
     3
 
 */
+
+import java.util.Scanner;
 
 public class _007_Calculate_The_Rank {
     public static void main() {
