@@ -17,12 +17,24 @@ package com.company;
         - 예시1
         3팀의 전적이 들어왔고 1번팀은 1승1패, 2번팀은 2패, 3번팀은 2승으로 3번이 우승이다.
         - input
-            3
-            1 2 5 4
-            1 3 2 3
-            2 3 1 3
+            6
+            1 2 0 0
+            1 3 0 3
+            1 4 2 2
+            1 5 1 2
+            1 6 0 2
+            2 3 3 3
+            2 4 1 4
+            2 5 2 1
+            2 6 3 4
+            3 4 2 0
+            3 5 3 3
+            3 6 3 4
+            4 5 1 3
+            4 6 0 0
+            5 6 3 2
         - output
-            3
+            5 6
 */
 
 import java.util.Scanner;
@@ -32,7 +44,8 @@ public class _009_League_Winner {
         InputProcess009 inputProcess009 = new InputProcess009();
         Process009 process009 = new Process009();
 
-        inputProcess009.InputByUser();
+        inputProcess009.inputTeamNumber();
+        inputProcess009.inputPlayScore();
         process009.initialize(inputProcess009.getTeam(), inputProcess009.getTotalTeam(), inputProcess009.getteam_ItemCount());
         process009.findWinner();
     }
@@ -44,8 +57,8 @@ class InputProcess009 {
     private int totalPlay;
     private int[][] team;
     // team[N][team_WinPoint, team_GameWin, team_GoalPlustCount, team_GoalMinusCount]
-    int team_WinPoint = 0, team_GameWin = 1, team_GoalPlusCount = 2, team_GoalMinusCount = 3;
-    int team_ItemCount = 4;
+    private int team_WinPoint = 0, team_GameWin = 1, team_GoalPlusCount = 2, team_GoalMinusCount = 3;
+    private int team_ItemCount = 4;
 
     private Scanner scan = new Scanner(System.in);
 
@@ -61,19 +74,14 @@ class InputProcess009 {
         return team_ItemCount;
     }
 
-    void InputByUser() {
-        inputTeamNumber();
-        inputPlayScore();
-    }
-
     // Function : Input Team Number ; 총 팀 수를 입력받음.
     void inputTeamNumber() {
 //        System.out.print("팀 수 : ");
-        totalTeam = Integer.parseInt(scan.nextLine());
+        totalTeam = scan.nextInt();
     }
 
     // Function : n! = n + (n-1) + (n-2) + ... + 1
-    int calCount(int input) {
+    private int calCount(int input) {
         if (input == 1) {
             return 1;
         } else {
@@ -84,32 +92,36 @@ class InputProcess009 {
     // Function : Input Play Score
     // Input struct : teamX teamY scoreX scoreY
     void inputPlayScore() {
-        String[] inputScore;
         int teamX, teamY, scoreX, scoreY;
 
-        team = new int[totalTeam + 1][totalTeam + 1];
+        team = new int[totalTeam + 1][team_ItemCount + 1];
         totalPlay = calCount(totalTeam - 1);
 
         for (int cnt = 1; cnt <= totalPlay; cnt++) {
 //            System.out.print("Input Score : ");
-            inputScore = scan.nextLine().split(" ");
 
-            teamX = Integer.parseInt(inputScore[0]);
-            teamY = Integer.parseInt(inputScore[1]);
-            scoreX = Integer.parseInt(inputScore[2]);
-            scoreY = Integer.parseInt(inputScore[3]);
+            teamX = scan.nextInt();
+            teamY = scan.nextInt();
+            scoreX = scan.nextInt();
+            scoreY = scan.nextInt();
 
             if (scoreX > scoreY) {  // teamX Win
                 team[teamX][team_WinPoint] += 3;
                 team[teamX][team_GameWin] += 1;
                 team[teamX][team_GoalPlusCount] += scoreX;
                 team[teamX][team_GoalMinusCount] -= scoreY;
+
+                team[teamY][team_GoalPlusCount] += scoreY;
+                team[teamY][team_GoalMinusCount] -= scoreX;
             } else if (scoreX < scoreY) {   // teamY Win
                 team[teamY][team_WinPoint] += 3;
                 team[teamY][team_GameWin] += 1;
                 team[teamY][team_GoalPlusCount] += scoreY;
                 team[teamY][team_GoalMinusCount] -= scoreX;
-            } else {    // tie score
+
+                team[teamX][team_GoalPlusCount] += scoreX;
+                team[teamX][team_GoalMinusCount] -= scoreY;
+            } else if (scoreX == scoreY) {    // tie score
                 team[teamX][team_WinPoint] += 1;
                 team[teamX][team_GoalPlusCount] += scoreX;
                 team[teamX][team_GoalMinusCount] -= scoreY;
@@ -120,7 +132,6 @@ class InputProcess009 {
             }
         }
     }
-
 }
 
 class Process009 {
@@ -130,9 +141,9 @@ class Process009 {
     private int winnerCount = 1;
 
     // InputProcess009 로부터 값을 받아서 초기화
-    void initialize(int[][] team, int TotalTeam, int totalItem) {
-        this.team = team.clone();
-        this.totalTeam = TotalTeam;
+    void initialize(int[][] totalteam, int totalTeam, int totalItem) {
+        this.team = totalteam.clone();
+        this.totalTeam = totalTeam;
         this.totalItem = totalItem;
 
         winner = new int[totalTeam + 1];
@@ -140,7 +151,7 @@ class Process009 {
 
     // Function : item 값을 비교하며 winner 찾기
     void findWinner() {
-        int tempWinner = 0;
+        int tempWinner;
 
         for (int cnt = 1; cnt <= totalTeam; cnt++) {
             tempWinner = compareTeam(winner[winnerCount], cnt, 0);
@@ -158,7 +169,7 @@ class Process009 {
     // Function : Team 1 vs Team 2
     // Return : Winner Team number
     //          if same score then return 0
-    int compareTeam(int teamA, int teamB, int item) {
+    private int compareTeam(int teamA, int teamB, int item) {
         if (item == totalItem) {
             return 0;
         }
@@ -173,9 +184,13 @@ class Process009 {
     }
 
     // Print Winner to Screen
-    void printWinner() {
+    private void printWinner() {
         for (int cnt = 1; cnt <= winnerCount; cnt++) {
-            System.out.print(winner[cnt] + " ");
+            if (cnt == 1) {
+                System.out.print(winner[cnt]);
+            } else {
+                System.out.print(" " + winner[cnt]);
+            }
         }
     }
 }
