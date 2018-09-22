@@ -30,8 +30,11 @@ public class Main {
         /*_007_Calculate_The_Rank Exercise007 = new _007_Calculate_The_Rank();
         Exercise007.main();*/
 
-        _008_Set_Seat Exercise008 = new _008_Set_Seat();
-        Exercise008.main();
+        /*_008_Set_Seat Exercise008 = new _008_Set_Seat();
+        Exercise008.main();*/
+
+        _009_League_Winner Exercise009 = new _009_League_Winner();
+        Exercise009.main();
     }
 
 }
