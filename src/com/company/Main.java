@@ -33,8 +33,11 @@ public class Main {
         /*_008_Set_Seat Exercise008 = new _008_Set_Seat();
         Exercise008.main();*/
 
-        _009_League_Winner Exercise009 = new _009_League_Winner();
-        Exercise009.main();
+        /*_009_League_Winner Exercise009 = new _009_League_Winner();
+        Exercise009.main();*/
+
+        _010_Flow_Water Exercise010 = new _010_Flow_Water();
+        Exercise010.main();
     }
 
 }
