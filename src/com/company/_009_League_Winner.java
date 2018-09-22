@@ -84,8 +84,10 @@ class InputProcess009 {
     private int calCount(int input) {
         if (input == 1) {
             return 1;
-        } else {
+        } else if (input > 1) {
             return input + calCount(input - 1);
+        } else {
+            return 0;
         }
     }
 
@@ -130,6 +132,8 @@ class InputProcess009 {
                 team[teamY][team_GoalPlusCount] += scoreY;
                 team[teamY][team_GoalMinusCount] -= scoreX;
             }
+
+//            System.out.println("check : " + teamX + "/" + teamY + "/" + scoreX + "/" + scoreY);
         }
     }
 }
@@ -158,11 +162,16 @@ class Process009 {
 
             if (tempWinner == 0 && cnt != 1) {
                 winner[++winnerCount] = cnt;
-            } else {
+            } else if (tempWinner == winner[winnerCount]) { // ex> 1=2, 3<1,2일 때 3인 경우
+                continue;
+            } else if (tempWinner > winner[winnerCount]) {
                 winnerCount = 1;
                 winner[winnerCount] = tempWinner;
             }
+
+//            System.out.println("winner : " + winnerCount + " | " + team[cnt][0] + "/" + team[cnt][1] + "/" + team[cnt][2] + "/" + team[cnt][3]);
         }
+
         printWinner();
     }
 
@@ -185,6 +194,16 @@ class Process009 {
 
     // Print Winner to Screen
     private void printWinner() {
+        try {
+            if (winner[winnerCount] == 0) {
+                System.out.println("-1");
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println("-1");
+            return;
+        }
+
         for (int cnt = 1; cnt <= winnerCount; cnt++) {
             if (cnt == 1) {
                 System.out.print(winner[cnt]);
